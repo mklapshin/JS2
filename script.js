@@ -1,25 +1,45 @@
-const goods = [
-  { title: 'Shirt', price: 150 },
-  { title: 'Socks', price: 50 },
-  { title: 'Jacket', price: 350 },
-  { title: 'Shoes', price: 250 },
-]
-
-const renderGoodsItem = (title, price) => {
-  return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`
+class GoodsItem {
+  constructor(title, price) {
+    this.title = title;
+    this.price = price;
+  }
+  render() {
+    return `<div class="goods-item"><h3>${this.title}</h3><p>${this.price}</p></div>`;
+  }
 }
 
-const renderGoodsList = list => {
-  let goodsList = list.map(item => renderGoodsItem(item.title, item.price))
+class GoodsList {
+  constructor() {
+    this.goods = [];
+  }
 
-  //   const goodsListDiv = document.querySelector('.goods-list')
-  //   goodsListDiv.innerHTML = goodsList
+  fetchGoods() {
+    this.goods = [
+      { title: "Shirt", price: 150 },
+      { title: "Socks", price: 50 },
+      { title: "Jacket", price: 350 },
+      { title: "Shoes", price: 250 },
+    ];
+  }
 
-  document.querySelector('.goods-list').innerHTML = goodsList
+  render() {
+    let listHtml = "";
+    let totalPrice = 0;
+    this.goods.forEach((good) => {
+      const goodItem = new GoodsItem(good.title, good.price);
+      totalPrice = totalPrice + good.price;
+      listHtml += goodItem.render();
+    });
+    console.log("Суммарная стоисмость всех товаров равна " + totalPrice);
+    document.querySelector(".goods-list").innerHTML = listHtml;
+  }
 }
+
 
 const init = () => {
-  renderGoodsList(goods)
-}
+    const list = new GoodsList();
+    list.fetchGoods();
+    list.render();
+};
 
-window.onload = init
+window.onload = init;
