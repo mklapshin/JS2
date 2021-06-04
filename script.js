@@ -1,25 +1,38 @@
-const goods = [
-  { title: 'Shirt', price: 150 },
-  { title: 'Socks', price: 50 },
-  { title: 'Jacket', price: 350 },
-  { title: 'Shoes', price: 250 },
-]
+function init() {
+    const div = document.getElementById("div");
+    const code = document.getElementById("code");
 
-const renderGoodsItem = (title, price) => {
-  return `<div class="goods-item"><h3>${title}</h3><p>${price}</p></div>`
+    let totalPrice = 0;
+    let newTotalPrice = document.createElement("div");
+
+    item1.addEventListener('click', function (event) {
+        totalPrice = totalPrice + 40;
+        let item = document.createElement("div");
+        item.innerHTML = "<p>Молоко 40 рублей</p>";
+        basket.appendChild(item);
+        newTotalPrice.innerHTML = totalPrice;
+        priceFinal.appendChild(newTotalPrice);
+    });
+
+    item2.addEventListener('click', function (event) {
+        totalPrice = totalPrice + 20;
+        let item = document.createElement("div");
+        item.innerHTML = "<p>Хлеб 20 рублей</p>";
+        basket.appendChild(item);
+        newTotalPrice.innerHTML = totalPrice;
+        priceFinal.appendChild(newTotalPrice);
+    });
+
+    item3.addEventListener('click', function (event) {
+        totalPrice = totalPrice + 15;
+        let item = document.createElement("div");
+        item.innerHTML = "<p>Вода 15 рублей</p>";
+        basket.appendChild(item);
+        newTotalPrice.innerHTML = totalPrice;
+        priceFinal.appendChild(newTotalPrice);
+    });
+
 }
 
-const renderGoodsList = list => {
-  let goodsList = list.map(item => renderGoodsItem(item.title, item.price))
 
-  //   const goodsListDiv = document.querySelector('.goods-list')
-  //   goodsListDiv.innerHTML = goodsList
-
-  document.querySelector('.goods-list').innerHTML = goodsList
-}
-
-const init = () => {
-  renderGoodsList(goods)
-}
-
-window.onload = init
+window.addEventListener('load', init);
